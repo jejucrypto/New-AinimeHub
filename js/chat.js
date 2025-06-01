@@ -91,7 +91,7 @@ function initializeChat() {
     
     // Connect to Socket.IO server
     try {
-        socket = io('http://localhost:3000');
+        socket = io('https://new-ainimehub-production.up.railway.app/');
         
         // Connection event
         socket.on('connect', () => {
