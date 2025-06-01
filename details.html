@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AinimeHub - Anime Details</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>AinimeHub</h1>
+            </div>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for anime...">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#" data-page="top-anime">Top Anime</a></li>
+                <li><a href="#" data-page="seasonal">Seasonal</a></li>
+                <li><a href="#" data-page="genres">Genres</a></li>
+                <li><a href="party.html" class="watchparty-btn"><i class="fas fa-users"></i> Watch Party</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="details-page" class="page active">
+            <div class="container">
+                <div class="main-layout">
+                    <!-- Left Column (75%) -->
+                    <div class="left-column">
+                        <!-- Video Player Section -->
+                        <section class="video-player-section">
+                            <div class="video-container" id="video-player">
+                                <div class="video-placeholder">
+                                    <i class="fas fa-play-circle"></i>
+                                    <p>Video Player</p>
+                                </div>
+                                <video controls id="anime-video" poster="https://placehold.co/1280x720.png?text=Video+Thumbnail">
+                                    <source src="" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            
+                            <!-- Video Controls -->
+                            <div class="video-controls">
+                                <button id="prev-episode" class="control-button">
+                                    <i class="fas fa-step-backward"></i> Previous Episode
+                                </button>
+                                <div class="episode-info">
+                                    <span id="current-episode">Episode 1</span>
+                                    <span id="episode-title">Episode Title</span>
+                                </div>
+                                <button id="next-episode" class="control-button">
+                                    Next Episode <i class="fas fa-step-forward"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Episodes Grid -->
+                            <div class="episodes-section">
+                                <h2 class="section-title">Episodes</h2>
+                                <div class="episodes-grid" id="episodes-grid">
+                                    <!-- Episodes will be loaded here -->
+                                    <div class="loading">Loading episodes...</div>
+                                </div>
+                                <div class="pagination" id="episodes-pagination">
+                                    <!-- Pagination will be added here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Anime Details Section -->
+                            <section class="anime-details-section">
+                                <h2 class="section-title">Anime Details</h2>
+                                <div class="anime-details-container" id="anime-details-container">
+                                    <!-- Anime details will be loaded here -->
+                                    <div class="loading">Loading anime details...</div>
+                                </div>
+                            </section>
+                            
+                            <!-- Characters Section -->
+                            <section class="characters-section">
+                                <h2 class="section-title">Characters</h2>
+                                <div class="characters-container">
+                                    <div class="characters-grid" id="characters-grid">
+                                        <!-- Characters will be loaded here -->
+                                        <div class="loading">Loading characters...</div>
+                                    </div>
+                                </div>
+                            </section>
+                            
+                            <!-- Reviews Section -->
+                            <section class="reviews-section">
+                                <h2 class="section-title">Reviews</h2>
+                                <div class="reviews-container" id="reviews-container">
+                                    <!-- Reviews will be loaded here -->
+                                    <div class="loading">Loading reviews...</div>
+                                </div>
+                            </section>
+                            
+                            <!-- Recommendations Section -->
+                            <section class="recommendations-section">
+                                <h2 class="section-title">Recommendations</h2>
+                                <div class="anime-grid-container">
+                                    <div class="anime-grid" id="recommendations-grid">
+                                        <!-- Recommendations will be loaded here -->
+                                        <div class="loading">Loading recommendations...</div>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                    </div>
+                    
+                    <!-- Right Column (25%) -->
+                    <div class="right-column">
+                        <!-- Global Chat Container -->
+                        <div class="chat-container" id="chat-container">
+                            <div class="chat-header">
+                                <h3>Global Chat</h3>
+                            </div>
+                            <div class="chat-messages" id="chat-messages">
+                                <div class="chat-welcome">
+                                    <p>Welcome to the AinimeHub Global Chat! Discuss your favorite anime with other fans.</p>
+                                </div>
+                                <!-- Chat messages will be loaded here -->
+                            </div>
+                            <div class="chat-input-container">
+                                <input type="text" id="chat-input" placeholder="Type your message...">
+                                <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                        
+                        <!-- Highest Rating Section -->
+                        <section class="highest-rated-section">
+                            <h2 class="section-title">Highest Rating</h2>
+                            <div class="anime-grid" id="highest-rated">
+                                <!-- Highest rated anime will be loaded here -->
+                                <div class="loading">Loading...</div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>AinimeHub</h2>
+                    <p>Your gateway to the anime world</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#" data-page="top-anime">Top Anime</a></li>
+                        <li><a href="#" data-page="seasonal">Seasonal</a></li>
+                        <li><a href="#" data-page="genres">Genres</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AinimeHub. Powered by Jikan API.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/details.js"></script>
+    <script src="js/ai-assistant.js"></script>
+</body>
+</html>

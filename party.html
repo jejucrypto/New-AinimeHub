@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AinimeHub - Watch Party</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="css/party.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;">AinimeHub</a></h1>
+            </div>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for anime...">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#" data-page="top-anime">Top Anime</a></li>
+                <li><a href="#" data-page="seasonal">Seasonal</a></li>
+                <li><a href="#" data-page="genres">Genres</a></li>
+                <li><a href="party.html" class="watchparty-btn active"><i class="fas fa-users"></i> Watch Party</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="party-page" class="page active">
+            <div class="container">
+                <div class="main-layout">
+                    <!-- Left Column (75%) -->
+                    <div class="left-column">
+                        <!-- Room Info Section -->
+                        <section class="room-info-section">
+                            <div class="room-info" id="room-info">
+                                <!-- Room info will be added here dynamically -->
+                            </div>
+                        </section>
+                        
+                        <!-- Video Player Section -->
+                        <section class="video-player-section">
+                            <div class="video-container" id="video-player">
+                                <div class="video-placeholder">
+                                    <i class="fas fa-play-circle"></i>
+                                    <p>Watch Party Video Player</p>
+                                </div>
+                                <video id="party-video" poster="https://placehold.co/1280x720.png?text=Watch+Party">
+                                    <source src="" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div class="video-notification" id="video-notification"></div>
+                                
+                                <div class="custom-video-controls">
+                                    <div class="progress-bar" id="party-progress">
+                                        <div class="progress-filled"></div>
+                                    </div>
+                                    
+                                    <div class="controls-container">
+                                        <div class="left-controls">
+                                            <button id="party-backward" class="control-button">
+                                                <i class="fas fa-undo-alt"></i> 10s
+                                            </button>
+                                            <button id="party-play" class="control-button">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button id="party-pause" class="control-button">
+                                                <i class="fas fa-pause"></i>
+                                            </button>
+                                            <button id="party-forward" class="control-button">
+                                                <i class="fas fa-redo-alt"></i> 10s
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="right-controls">
+                                            <div class="volume-control">
+                                                <i class="fas fa-volume-up"></i>
+                                                <input type="range" id="party-volume" min="0" max="1" step="0.1" value="1">
+                                            </div>
+                                            <div class="time-display">
+                                                <span id="current-time">0:00</span> / <span id="total-time">0:00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Video Controls -->
+                            <div class="video-controls">
+                                <button id="prev-episode" class="control-button">
+                                    <i class="fas fa-step-backward"></i> Previous Episode
+                                </button>
+                                <div class="episode-info">
+                                    <span id="current-episode">Episode 1</span>
+                                    <span id="episode-title">Episode Title</span>
+                                </div>
+                                <button id="next-episode" class="control-button">
+                                    Next Episode <i class="fas fa-step-forward"></i>
+                                </button>
+                            </div>
+                        </section>
+                        
+                        <!-- Party Members Section -->
+                        <section class="party-members-section">
+                            <h2 class="section-title">Party Members</h2>
+                            <div class="party-members-container" id="party-members-container">
+                                <!-- Party members will be displayed here -->
+                                <div class="loading">Loading party members...</div>
+                            </div>
+                        </section>
+                    </div>
+                    
+                    <!-- Right Column (25%) -->
+                    <div class="right-column">
+                        <!-- Chat Container with Tabs -->
+                        <div class="chat-container" id="chat-container">
+                            <div class="chat-tabs">
+                                <div class="chat-tab active" data-tab="party">Party Chat</div>
+                                <div class="chat-tab" data-tab="global">Global Chat</div>
+                            </div>
+                            
+                            <!-- Party Chat Tab Content -->
+                            <div class="chat-tab-content active" id="party-tab">
+                                <div class="chat-messages" id="party-chat-messages">
+                                    <div class="chat-welcome">
+                                        <p>Welcome to the Party Chat! Discuss the anime with your watch party members.</p>
+                                    </div>
+                                    <!-- Party chat messages will be loaded here -->
+                                </div>
+                                <div class="chat-input-container">
+                                    <input type="text" id="party-chat-input" placeholder="Type your message...">
+                                    <button id="party-send-message"><i class="fas fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                            
+                            <!-- Global Chat Tab Content -->
+                            <div class="chat-tab-content" id="global-tab">
+                                <div class="chat-messages" id="chat-messages">
+                                    <div class="chat-welcome">
+                                        <p>Welcome to the AinimeHub Global Chat! Discuss your favorite anime with other fans.</p>
+                                    </div>
+                                    <!-- Chat messages will be loaded here -->
+                                </div>
+                                <div class="chat-input-container">
+                                    <input type="text" id="chat-input" placeholder="Type your message...">
+                                    <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>AinimeHub</h2>
+                    <p>Your gateway to the anime world</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AinimeHub. Powered by Jikan API.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="js/session-manager.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/party.js"></script>
+    <script src="js/ai-assistant.js"></script>
+    <script>
+        // Initialize Socket.IO connection
+        const socket = io();
+    </script>
+</body>
+</html>

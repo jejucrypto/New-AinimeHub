@@ -1,0 +1,520 @@
+/* AI Assistant Floating Button and Modal Styles */
+:root {
+  --ai-primary-color: #6c5ce7;
+  --ai-secondary-color: #a29bfe;
+  --ai-accent-color: #fd79a8;
+  --ai-text-color: #2d3436;
+  --ai-light-color: #f5f6fa;
+  --ai-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --ai-transition: all 0.3s ease;
+}
+
+/* Floating Button */
+.ai-floating-btn {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--ai-primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--ai-shadow);
+  cursor: grab;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+  bottom: 20px;
+  font-size: 24px;
+  border: none;
+  outline: none;
+  user-select: none;
+  touch-action: none;
+}
+
+.ai-floating-btn.dragging {
+  cursor: grabbing;
+  opacity: 0.85;
+}
+
+/* Snapping indicators */
+.ai-floating-btn[data-snap="left"] {
+  box-shadow: -5px 0 10px rgba(108, 92, 231, 0.5), var(--ai-shadow);
+}
+
+.ai-floating-btn[data-snap="right"] {
+  box-shadow: 5px 0 10px rgba(108, 92, 231, 0.5), var(--ai-shadow);
+}
+
+.ai-floating-btn:hover {
+  transform: scale(1.1);
+  background-color: var(--ai-accent-color);
+}
+
+.ai-floating-btn.left-side {
+  left: 20px;
+  right: auto;
+}
+
+/* AI Modal */
+.ai-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ai-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.ai-modal-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--ai-shadow);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.ai-modal.active .ai-modal-content {
+  transform: translateY(0);
+}
+
+.ai-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: var(--ai-primary-color);
+  color: white;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.ai-modal-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.ai-close-modal {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: var(--ai-transition);
+}
+
+.ai-close-modal:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ai-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-chat-container {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  padding: 10px;
+  max-height: 400px;
+  border-radius: 8px;
+  background-color: var(--ai-light-color);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Welcome Message */
+.ai-welcome {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(108, 92, 231, 0.1);
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.ai-welcome h3 {
+  color: var(--ai-primary-color);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.ai-welcome p {
+  color: var(--ai-text-color);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.ai-welcome .ai-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ai-welcome .ai-suggestion-chip {
+  background-color: var(--ai-secondary-color);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--ai-transition);
+}
+
+.ai-welcome .ai-suggestion-chip:hover {
+  background-color: var(--ai-primary-color);
+  transform: scale(1.05);
+}
+
+.ai-message {
+  margin-bottom: 15px;
+  max-width: 80%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  line-height: 1.4;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.ai-message.user {
+  background-color: var(--ai-secondary-color);
+  color: white;
+  align-self: flex-end;
+  margin-left: auto;
+  border-bottom-right-radius: 5px;
+}
+
+.ai-message.assistant {
+  background-color: white;
+  color: var(--ai-text-color);
+  align-self: flex-start;
+  border: 1px solid #e0e0e0;
+  border-bottom-left-radius: 5px;
+}
+
+/* Anime Cards */
+.anime-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.anime-card {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.anime-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.anime-card-image {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.anime-card-content {
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.anime-card-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+  color: var(--ai-primary-color);
+}
+
+.anime-card-info {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 5px;
+  display: flex;
+  gap: 10px;
+}
+
+.anime-card-description {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.anime-card-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 5px 0;
+}
+
+.genre-badge {
+  background-color: var(--ai-secondary-color);
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.anime-card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.anime-card-link {
+  color: var(--ai-primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+.anime-card-link:hover {
+  text-decoration: underline;
+}
+
+.anime-card-link.create-party {
+  background-color: var(--ai-secondary-color);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.anime-card-link.create-party:hover {
+  background-color: var(--ai-primary-color);
+  text-decoration: none;
+}
+
+.ai-input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.ai-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--ai-transition);
+}
+
+.ai-input:focus {
+  border-color: var(--ai-primary-color);
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+}
+
+.ai-send-btn {
+  background-color: var(--ai-primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--ai-transition);
+}
+
+.ai-send-btn:hover {
+  background-color: var(--ai-accent-color);
+}
+
+.ai-send-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.ai-typing {
+  display: flex;
+  padding: 10px;
+  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.ai-typing .dot {
+  width: 8px;
+  height: 8px;
+  background-color: #666;
+  border-radius: 50%;
+  margin: 0 2px;
+  animation: typing 1s infinite ease-in-out;
+}
+
+.ai-typing .dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.ai-typing .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.ai-typing .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* History Section */
+.ai-history-toggle {
+  background: none;
+  border: none;
+  color: var(--ai-primary-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ai-history-toggle:hover {
+  text-decoration: underline;
+}
+
+.ai-history-container {
+  display: none;
+  margin-bottom: 15px;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f8f8f8;
+}
+
+.ai-history-empty {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-style: italic;
+}
+
+.ai-history-item {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.ai-history-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.ai-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.ai-history-date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.ai-history-load {
+  background-color: var(--ai-secondary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ai-history-load:hover {
+  background-color: var(--ai-primary-color);
+}
+
+.ai-history-content {
+  font-size: 0.9rem;
+}
+
+.ai-history-user {
+  margin-bottom: 5px;
+}
+
+.ai-history-ai {
+  color: var(--ai-text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.ai-history-item:hover {
+  background-color: var(--ai-light-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .ai-modal-content {
+    width: 95%;
+    max-height: 90vh;
+  }
+  
+  .ai-message {
+    max-width: 90%;
+  }
+}
