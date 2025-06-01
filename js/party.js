@@ -354,7 +354,7 @@ async function loadVideoStream(episodeNum) {
         const episodeNumber = episodeNum || 1;
         
         // Request stream URL from server
-        const response = await fetch('http://localhost:3000/api/get-stream-url', {
+        const response = await fetch('https://new-ainimehub-production.up.railway.app/api/get-stream-url', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -585,7 +585,7 @@ function initializeWatchParty() {
     
     // Connect to Socket.IO server
     try {
-        socket = io('http://localhost:3000');
+        socket = io('https://new-ainimehub-production.up.railway.app/');
         
         // Connection event
         socket.on('connect', () => {
