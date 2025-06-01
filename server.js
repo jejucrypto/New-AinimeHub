@@ -796,7 +796,7 @@ app.post('/api/ai-assistant', async (req, res) => {
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-      'HTTP-Referer': req.headers.origin || 'http://localhost:3000',
+      'HTTP-Referer': req.headers.origin || 'https://new-ainimehub-production.up.railway.app/',
       'X-Title': 'Anime Website AI Assistant'
     };
     
